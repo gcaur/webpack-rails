@@ -53,6 +53,7 @@ module Webpack
         end
 
         def load_dev_server_manifest
+          # we leave this as 'localhost' because it needs to fetch from within the container
           http = Net::HTTP.new(
               "localhost",
             ::Rails.configuration.webpack.dev_server.port)
