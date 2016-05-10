@@ -81,7 +81,7 @@ module Webpack
         end
 
         def dev_server_url
-          host = #{::Rails.configuration.webpack.dev_server.host} || "localhost"
+          host = ::Rails.configuration.webpack.dev_server.host || "localhost"
           "http://#{host}:#{::Rails.configuration.webpack.dev_server.port}#{dev_server_path}"
         end
       end
