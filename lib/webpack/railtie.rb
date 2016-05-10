@@ -16,7 +16,7 @@ module Webpack
     config.webpack.binary = 'node_modules/.bin/webpack'
 
     config.webpack.dev_server = ActiveSupport::OrderedOptions.new
-    config.webpack.dev_server.host = ENV['WEBPACK_HOST'] || 'dockerhost'
+    config.webpack.dev_server.host = ENV['WEBPACK_HOST'] || 'localhost'
     config.webpack.dev_server.port = ENV['WEBPACK_PORT'] || 3808
     config.webpack.dev_server.https = false # note - this will use OpenSSL::SSL::VERIFY_NONE
     config.webpack.dev_server.binary = 'node_modules/.bin/webpack-dev-server'
