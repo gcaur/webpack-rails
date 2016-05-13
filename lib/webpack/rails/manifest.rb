@@ -23,9 +23,9 @@ module Webpack
           if paths
             # Can be either a string or an array of strings.
             # Do not include source maps
-            re_str = ".*\\#{filetype}$"
+            re = Regexp.new(".*\\#{filetype}$")
 
-            [paths].flatten.reject { |p| p =~ /.*\.map$/ || !(p =~ /#{Regexp.quote(re_str)}$/) }.map do |p|
+            [paths].flatten.select { |p| re.match(p) }.map do |p|
               "/#{::Rails.configuration.webpack.public_path}/#{p}"
             end
           else

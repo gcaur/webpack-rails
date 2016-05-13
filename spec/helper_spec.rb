@@ -7,7 +7,7 @@ describe 'webpack_asset_paths' do
   include Webpack::Rails::Helper
 
   before do
-    expect(Webpack::Rails::Manifest).to receive(:asset_paths).with(source).and_return(asset_paths)
+    expect(Webpack::Rails::Manifest).to receive(:asset_paths).with(source, '.js').and_return(asset_paths)
   end
 
   it "should return paths straight from te manifest if the dev server is disabled" do
@@ -20,7 +20,7 @@ describe 'webpack_asset_paths' do
     ::Rails.configuration.webpack.dev_server.port = 4000
 
     expect(webpack_asset_paths source).to eq([
-      "//localhost:4000/a/a.js", "//localhost:4000/b/b.js"
+      "//dockerhost:4000/a/a.js", "//dockerhost:4000/b/b.js"
     ])
   end
 
