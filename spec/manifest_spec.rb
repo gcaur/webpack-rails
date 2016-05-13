@@ -7,7 +7,8 @@ describe "Webpack::Rails::Manifest" do
       {
         "assetsByChunkName": {
           "entry1": [ "entry1.js", "entry1-a.js" ],
-          "entry2": "entry2.js"
+          "entry2": "entry2.js",
+          "entry3": [ "entry3.js", "entry3.css" ]
         }
       }
     EOF
@@ -16,6 +17,10 @@ describe "Webpack::Rails::Manifest" do
   shared_examples_for "a valid manifest" do
     it "should return single entry asset paths from the manifest" do
       expect(Webpack::Rails::Manifest.asset_paths("entry2", ".js")).to eq(["/public_path/entry2.js"])
+    end
+
+    it "should return a proper file for CSS" do
+      expect(Webpack::Rails::Manifest.asset_paths("entry3", ".css")).to eq(["/public_path/entry3.css"])
     end
 
     it "should return multiple entry asset paths from the manifest" do
